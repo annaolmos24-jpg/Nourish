@@ -1,0 +1,9 @@
+{
+  "name": "Nourish — Nutrition & Wellness",
+  "short_name": "Nourish",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f5",
+  "theme_color": "#2f8f5b",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

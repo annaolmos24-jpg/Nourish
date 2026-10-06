@@ -133,7 +133,7 @@
     ring.classList.toggle('over', t.kcal > g.kcal);
     $('#cal-eaten').textContent = Math.round(t.kcal);
     var left = Math.round(g.kcal - t.kcal);
-    $('#cal-remaining').textContent = left >= 0 ? left + ' kcal left of ' + g.kcal : Math.abs(left) + ' kcal over ' + g.kcal;
+    $('#cal-remaining').textContent = left >= 0 ? left + ' kcal left\nof ' + g.kcal : Math.abs(left) + ' kcal over\n' + g.kcal + ' goal';
 
     var box = $('#macros');
     box.innerHTML = '';
@@ -208,7 +208,7 @@
 
   /* ---------- Charts ---------- */
   function renderCalChart() {
-    var W = 520, H = 200, P = { l: 36, r: 8, t: 12, b: 26 };
+    var W = 520, H = 200, P = { l: 36, r: 8, t: 12, b: 34 };
     var days = [];
     for (var i = 6; i >= 0; i--) days.push(addDays(selected, -i));
     var vals = days.map(function (s) { return totals(s).kcal; });
@@ -251,7 +251,7 @@
     var first = vals[0], last = vals[vals.length - 1], diff = last - first;
     $('#weight-delta').textContent = round(last, 1) + ' ' + state.unit + (pts.length > 1 ? ' (' + (diff > 0 ? '+' : '') + round(diff, 1) + ')' : '');
 
-    var W = 520, H = 180, P = { l: 40, r: 12, t: 12, b: 26 };
+    var W = 520, H = 180, P = { l: 40, r: 12, t: 12, b: 36 };
     var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
     if (max - min < 2) { min -= 1; max += 1; }
     var iw = W - P.l - P.r, ih = H - P.t - P.b;

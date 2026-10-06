@@ -278,3 +278,109 @@ dialog::backdrop { background: rgba(0,0,0,.45); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ---------- Tracker / Learn switch ---------- */
+.view-tabs {
+  display: flex; justify-content: center; gap: 4px;
+  width: fit-content; margin: 16px auto 0; padding: 4px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px;
+}
+.view-tabs a {
+  padding: 8px 18px; border-radius: 999px; text-decoration: none;
+  color: var(--muted); font-weight: 650; font-size: .95rem;
+}
+.view-tabs a[aria-current="page"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+[hidden] { display: none !important; }
+
+/* ---------- Learn ---------- */
+.learn { display: grid; gap: 16px; }
+.learn .card { margin: 0; }
+.learn-intro h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 750; }
+.stack { display: grid; gap: 12px; }
+.gap { gap: 10px; }
+.wrap { flex-wrap: wrap; }
+.jump-nav {
+  position: sticky; top: 64px; z-index: 5; background: var(--bg);
+  display: flex; gap: 8px; overflow-x: auto; padding: 6px 0; scrollbar-width: none;
+}
+.jump-nav::-webkit-scrollbar { display: none; }
+.jump-nav .chip { flex-shrink: 0; }
+.learn section[id^="learn-"] { scroll-margin-top: 120px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: .875rem; white-space: nowrap;
+}
+.chip:hover { border-color: var(--primary); }
+.chip.active { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+.fact-day {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center;
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+}
+.fact-day h2 { margin: 2px 0 4px; }
+.fact-emoji {
+  font-size: 2rem; width: 52px; height: 52px; border-radius: 14px;
+  background: var(--surface); display: grid; place-items: center;
+}
+.calc-form { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.calc-form .wide { grid-column: span 2; }
+.calc-form input, .calc-form select {
+  width: 100%; padding: 9px 10px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg);
+}
+.calc-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin-bottom: 10px; }
+.stat-mini { background: var(--surface-2); border-radius: 12px; padding: 12px; display: grid; gap: 2px; }
+.stat-mini span { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.stat-mini strong { font-size: 1.35rem; }
+.stat-mini small { color: var(--muted); }
+.plan-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.plan-head h3 { margin-bottom: 4px; }
+.dots { display: flex; flex-wrap: wrap; gap: 12px; margin: 6px 0 0; }
+.dots span::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--c); margin-right: 5px; vertical-align: 1px;
+}
+.plan-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.plan-meal { border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+.plan-meal .card-head { margin-bottom: 6px; }
+.plan-meal h3 { font-size: 1rem; }
+.plan-items { list-style: none; margin: 0; padding: 0; }
+.plan-items li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid var(--border); font-size: .9rem; }
+.plan-items li:first-child { border-top: 0; }
+.plan-items li span:last-child { white-space: nowrap; font-size: .8rem; }
+.shopping summary { cursor: pointer; font-weight: 600; }
+.shopping ul { columns: 2 180px; margin: 10px 0 0; padding-left: 18px; font-size: .9rem; }
+.plate-card { display: grid; gap: 20px; align-items: center; }
+@media (min-width: 640px) { .plate-card { grid-template-columns: 220px 1fr; } }
+.plate { width: 100%; max-width: 220px; margin: 0 auto; display: block; }
+.plate-label { font: 700 13px system-ui, sans-serif; fill: var(--text); }
+.plain-list, .check-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.plain-list li { padding-left: 12px; border-left: 3px solid color-mix(in srgb, var(--primary) 35%, transparent); }
+.check-list li { position: relative; padding-left: 26px; font-size: .92rem; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: color-mix(in srgb, var(--primary) 18%, transparent); color: var(--primary);
+  font-size: .7rem; font-weight: 800; display: grid; place-items: center;
+}
+.tip-title { margin-bottom: 10px; }
+.tips-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.facts { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.fact { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.fact .fact-emoji { width: 44px; height: 44px; font-size: 1.5rem; background: var(--surface-2); }
+.fact h3 { font-size: 1rem; margin-bottom: 4px; }
+.fact p { margin: 0; }
+.myth summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; gap: 10px; align-items: baseline; }
+.myth summary::-webkit-details-marker { display: none; }
+.myth summary::after { content: "+"; margin-left: auto; color: var(--muted); font-size: 1.2rem; }
+.myth[open] summary::after { content: "−"; }
+.myth p { margin: 10px 0 0; }
+.myth-tag, .fact-tag {
+  font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+  padding: 2px 8px; border-radius: 999px; flex-shrink: 0;
+}
+.myth-tag { background: color-mix(in srgb, var(--danger) 15%, transparent); color: var(--danger); }
+.fact-tag { background: color-mix(in srgb, var(--primary) 18%, transparent); color: var(--primary); margin-right: 6px; }
+@media (max-width: 420px) {
+  .calc-form .wide { grid-column: 1 / -1; }
+  .tips-grid { grid-template-columns: 1fr; }
+}

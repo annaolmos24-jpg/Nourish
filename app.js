@@ -191,7 +191,7 @@
         group.appendChild(el('div', { class: 'entry' }, [
           el('div', null, [
             el('div', { class: 'entry-name', text: e.name }),
-            el('div', { class: 'entry-meta', text: round(e.grams) + ' g · ' + Math.round(e.kcal) + ' kcal · P ' + round(e.protein) + ' · C ' + round(e.carbs) + ' · F ' + round(e.fat) })
+            el('div', { class: 'entry-meta', text: (e.grams ? round(e.grams) + ' g · ' : '') + Math.round(e.kcal) + ' kcal · P ' + round(e.protein) + ' · C ' + round(e.carbs) + ' · F ' + round(e.fat) })
           ]),
           el('button', { type: 'button', class: 'del', 'aria-label': 'Remove ' + e.name, text: '✕', onclick: function () { removeEntry(e.id); } })
         ]));
@@ -438,8 +438,52 @@
     renderSummary(); renderWater(); renderMeals(); renderCalChart(); renderWeight();
   }
 
+  /* ---------- Hooks for the Learn tab (learn.js) ---------- */
+  window.Nourish = {
+    unit: function () { return state.unit; },
+    toUnit: toUnit,
+    fromUnit: function (v) { return state.unit === 'kg' ? v : v / 2.20462; },
+    latestWeightKg: function () {
+      var w = state.weights.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+      return w.length ? w[w.length - 1].kg : null;
+    },
+    // Adds items ({ name, meal, kcal, protein, carbs, fat }) to the day selected in the tracker.
+    addEntries: function (items) {
+      var d = day(selected);
+      items.forEach(function (it) {
+        d.entries.push({
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+          name: it.name, meal: it.meal, grams: 0,
+          kcal: it.kcal, protein: it.protein, carbs: it.carbs, fat: it.fat
+        });
+      });
+      save(); renderAll();
+    },
+    setGoals: function (g) {
+      state.goals = Object.assign({}, state.goals, g);
+      save(); renderAll();
+    },
+    toast: toast
+  };
+
+  /* ---------- Tracker / Learn switch ---------- */
+  function showView() {
+    var learn = location.hash === '#learn';
+    $('#tracker-view').hidden = learn;
+    $('#learn-view').hidden = !learn;
+    document.querySelectorAll('.view-tabs a').forEach(function (a) {
+      if (a.getAttribute('href') === (learn ? '#learn' : '#tracker')) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    if (learn && window.NourishLearn) window.NourishLearn.render();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', showView);
+
   picker.value = selected;
   renderGreeting();
   renderAll();
   setInterval(renderGreeting, 60 * 1000);
+  // learn.js loads after this file, so wait for it before showing the first view.
+  window.addEventListener('DOMContentLoaded', showView);
 })();

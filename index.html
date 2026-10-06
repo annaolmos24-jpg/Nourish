@@ -41,7 +41,12 @@
     </div>
   </header>
 
-  <main class="container">
+  <nav class="view-tabs" aria-label="Sections">
+    <a href="#tracker" aria-current="page">📊 Tracker</a>
+    <a href="#learn">📚 Learn</a>
+  </nav>
+
+  <main class="container" id="tracker-view">
     <section class="hero" aria-live="polite">
       <div>
         <p class="eyebrow" id="today-label"></p>
@@ -155,6 +160,8 @@
     </div>
   </main>
 
+  <main class="container learn" id="learn-view" hidden></main>
+
   <footer class="footer">
     <p>Nourish keeps your log on this device only. Not medical advice.</p>
   </footer>
@@ -213,5 +220,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="app.js"></script>
+  <script src="learn-data.js"></script>
+  <script src="learn.js"></script>
 </body>
 </html>

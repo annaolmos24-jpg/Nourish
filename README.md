@@ -1,9 +1,9 @@
 # Nourish — Nutrition & Wellness Tracker
 
-A responsive meal and progress tracker for Dr. Lee. Works in desktop browsers, tablets and phones.
+A responsive meal and progress tracker for Oriana. Works in desktop browsers, tablets and phones.
 
 ## Features
-- Personalized greeting (good morning / afternoon / evening, Dr. Lee)
+- Personalized greeting (good morning / afternoon / evening, Oriana)
 - Light, dark and system themes (remembered between visits)
 - Live food search powered by **[Open Food Facts](https://world.openfoodfacts.org)** — free, open data, no account, password or API key required
 - Barcode lookup (type an 8–14 digit barcode into the search box)

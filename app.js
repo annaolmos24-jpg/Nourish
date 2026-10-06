@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var USER_NAME = 'Dr. Lee';
+  var USER_NAME = 'Oriana';
   var STORE_KEY = 'nourish.data.v1';
   var THEME_KEY = 'nourish.theme';
   var MEALS = ['breakfast', 'lunch', 'dinner', 'snack'];
